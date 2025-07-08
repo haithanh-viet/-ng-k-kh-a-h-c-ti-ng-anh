@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng ký học Trung tâm Ngoại ngữ</title>
+    <style>
+        body {
+            font-family: Arial;
+            background-color: #f0f8ff;
+            padding: 20px;
+        }
+        .container {
+            max-width: 700px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+        }
+        .logo {
+            display: block;
+            margin: 0 auto 10px;
+            width: 120px;
+        }
+        .banner {
+            width: 100%;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+        h2 { color: #333; text-align: center; }
+        input, select, textarea {
+            width: 100%; padding: 10px; margin: 8px 0;
+            border: 1px solid #ccc; border-radius: 5px;
+        }
+        button {
+            background-color: #28a745; color: white; padding: 10px 20px;
+            border: none; border-radius: 5px; cursor: pointer;
+        }
+        button:hover { background-color: #218838; }
+        .result {
+            margin-top: 20px;
+            background-color: #e9f7ef;
+            padding: 15px;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Logo -->
+    <img src="https://byan.com.vn/vnt_upload/weblink/logo.svg" class="logo" alt="Logo Trung tâm">
+
+    <!-- Banner -->
+    <img src="https://byan.com.vn/vnt_upload/dealer/thumbs/740__Background_Byan_Teach.jpg" class="banner" alt="Banner">
+
+    <h2>Trung tâm Ngoại ngữ BYAN TEACH</h2>
+    <p>Địa chỉ: Số 11, Đường 64, KDC Văn Minh, An Phú, Quận 2, Tp. Hồ Chí Minh</p>
+    <p>Điện thoại: 0942 135 808 | Email: info@byan.com.vn</p>
+
+    <h3>Form Đăng ký khóa học</h3>
+    <form id="registerForm">
+        <label>Họ và tên:</label>
+        <input type="text" id="name">
+
+        <label>Ngày sinh:</label>
+        <input type="date" id="dob">
+
+        <label>Giới tính:</label>
+        <select id="gender">
+            <option value="">-- Chọn giới tính --</option>
+            <option value="Nam">Nam</option>
+            <option value="Nữ">Nữ</option>
+        </select>
+
+        <label>Số điện thoại:</label>
+        <input type="text" id="phone">
+
+        <label>Email:</label>
+        <input type="email" id="email">
+
+        <label>Khóa học mong muốn:</label>
+        <select id="course">
+            <option value="">-- Chọn khóa học --</option>
+            <option value="Tiếng Anh giao tiếp">Tiếng Anh giao tiếp</option>
+            <option value="Luyện thi TOEIC">Luyện thi TOEIC</option>
+            <option value="Luyện thi IELTSTOEFL">Luyện thi IELTSTOEFL</option>
+            <option value="Luyện thi TOEFL">Luyện thi TOEFL</option>
+        </select>
+
+        <label>Trình độ hiện tại:</label>
+        <select id="level">
+            <option value="">-- Chọn trình độ --</option>
+            <option value="Cơ bản">Cơ bản</option>
+            <option value="Trung cấp">Trung cấp</option>
+            <option value="Nâng cao">Nâng cao</option>
+        </select>
+
+        <label>Ghi chú:</label>
+        <textarea id="note" rows="3" placeholder="Ghi chú thêm (nếu có)"></textarea>
+
+        <button type="submit">Gửi</button>
+    </form>
+
+    <!-- Hiển thị kết quả -->
+    <div class="result" id="result"></div>
+</div>
+
+<script>
+document.getElementById("registerForm").addEventListener("submit", function(event){
+    event.preventDefault();
+    
+    var name = document.getElementById("name").value.trim();
+    var dob = document.getElementById("dob").value;
+    var gender = document.getElementById("gender").value;
+    var phone = document.getElementById("phone").value.trim();
+    var email = document.getElementById("email").value.trim();
+    var course = document.getElementById("course").value;
+    var level = document.getElementById("level").value;
+    var note = document.getElementById("note").value.trim();
+
+    if (!name || !dob || !gender || !phone || !email || !course || !level) {
+        alert("Vui lòng điền đầy đủ thông tin bắt buộc!");
+        return;
+    }
+
+    var resultContent = `
+        <h4>Thông tin đăng ký:</h4>
+        <p><strong>Họ và tên:</strong> ${name}</p>
+        <p><strong>Ngày sinh:</strong> ${dob}</p>
+        <p><strong>Giới tính:</strong> ${gender}</p>
+        <p><strong>Số điện thoại:</strong> ${phone}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Khóa học mong muốn:</strong> ${course}</p>
+        <p><strong>Trình độ hiện tại:</strong> ${level}</p>
+        <p><strong>Ghi chú:</strong> ${note ? note : 'Không có'}</p>
+        <p style="color: green;"><strong>Đăng ký thành công!</strong> Cảm ơn bạn, ${name}!</p>
+    `;
+
+    document.getElementById("result").innerHTML = resultContent;
+});
+</script>
+
+</body>
+</html>
+
